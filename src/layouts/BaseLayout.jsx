@@ -73,7 +73,7 @@ const BaseLayout = ({ sidebarItems = [], headerTitle = 'HRMS', children }) => {
     {
       key: 'dashboard',
       label: t('dashboard.title', 'Dashboard'),
-      icon: <span className="text-lg">💰</span>,
+      icon: <span className="text-lg">🏠`</span>,
     },
     hasPayrollPermission && {
       key: 'payroll',
