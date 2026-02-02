@@ -1,0 +1,71 @@
+{
+  "common": {
+    "welcome": "أهلاً وسهلاً",
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "submit": "إرسال",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "search": "بحث",
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "success": "نجح",
+    "actions": "إجراءات"
+  },
+  "auth": {
+    "login_title": "تسجيل الدخول إلى نظام HRMS",
+    "login_subtitle": "أدخل بيانات اعتمادك للمتابعة",
+    "email_required": "البريد الإلكتروني مطلوب",
+    "email_invalid": "تنسيق البريد الإلكتروني غير صالح",
+    "password_required": "كلمة المرور مطلوبة",
+    "password_min": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
+    "login_success": "تم تسجيل الدخول بنجاح!",
+    "login_error": "بيانات اعتماد غير صالحة",
+    "session_expired": "انتهت الجلسة. يرجى تسجيل الدخول مرة أخرى.",
+    "remember_me": "تذكرني"
+  },
+  "navigation": {
+    "dashboard": "لوحة القيادة",
+    "payroll": "كشوف المرتبات",
+    "accommodations": "أماكن الإقامة",
+    "vehicles": "المركبات",
+    "employees": "الموظفون",
+    "settings": "الإعدادات"
+  },
+  "dashboard": {
+    "title": "لوحة القيادة",
+    "welcome_message": "مرحباً بعودتك!",
+    "statistics": "إحصائيات",
+    "recent_activity": "النشاط الأخير"
+  },
+  "payroll": {
+    "title": "إدارة كشوف المرتبات",
+    "employees_list": "قائمة الموظفين",
+    "salary_details": "تفاصيل الراتب",
+    "payments": "المدفوعات"
+  },
+  "accommodations": {
+    "title": "أماكن الإقامة",
+    "available": "متاح",
+    "occupied": "مشغول",
+    "maintenance": "قيد الصيانة"
+  },
+  "vehicles": {
+    "title": "إدارة المركبات",
+    "fleet": "الأسطول",
+    "maintenance": "الصيانة",
+    "assignments": "التخصيصات"
+  },
+  "language": {
+    "select": "اختر اللغة",
+    "english": "الإنجليزية",
+    "arabic": "العربية",
+    "french": "الفرنسية",
+    "spanish": "الإسبانية",
+    "urdu": "الأردية"
+  }
+}

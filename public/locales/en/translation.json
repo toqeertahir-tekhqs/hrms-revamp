@@ -1,0 +1,71 @@
+{
+  "common": {
+    "welcome": "Welcome",
+    "login": "Login",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "actions": "Actions"
+  },
+  "auth": {
+    "login_title": "Login to HRMS",
+    "login_subtitle": "Enter your credentials to continue",
+    "email_required": "Email is required",
+    "email_invalid": "Invalid email format",
+    "password_required": "Password is required",
+    "password_min": "Password must be at least 6 characters",
+    "login_success": "Login successful!",
+    "login_error": "Invalid credentials",
+    "session_expired": "Session expired. Please login again.",
+    "remember_me": "Remember me"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "payroll": "Payroll",
+    "accommodations": "Accommodations",
+    "vehicles": "Vehicles",
+    "employees": "Employees",
+    "settings": "Settings"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome_message": "Welcome back!",
+    "statistics": "Statistics",
+    "recent_activity": "Recent Activity"
+  },
+  "payroll": {
+    "title": "Payroll Management",
+    "employees_list": "Employees List",
+    "salary_details": "Salary Details",
+    "payments": "Payments"
+  },
+  "accommodations": {
+    "title": "Accommodations",
+    "available": "Available",
+    "occupied": "Occupied",
+    "maintenance": "Under Maintenance"
+  },
+  "vehicles": {
+    "title": "Vehicle Management",
+    "fleet": "Fleet",
+    "maintenance": "Maintenance",
+    "assignments": "Assignments"
+  },
+  "language": {
+    "select": "Select Language",
+    "english": "English",
+    "arabic": "Arabic",
+    "french": "French",
+    "spanish": "Spanish",
+    "urdu": "Urdu"
+  }
+}
