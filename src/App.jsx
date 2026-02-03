@@ -1,26 +1,24 @@
+import { useTheme } from '@/contexts/ThemeContext';
 import useDeviceDetect from 'Hooks/useDeviceDetect';
-import { ConfigProvider, Spin } from 'antd';
+import { ConfigProvider, Layout, Spin, theme } from 'antd';
 import { AdminHeader, SideBar } from 'components';
 import Breadcrumbs from 'components/BreadCrumb';
 import BreadCrumbForAccommodation from 'components/BreadCrumb/BreadCrumbForAccommodation';
-import BreadCrumbForPayroll from 'components/BreadCrumb/BreadCrumbForPayroll';
 import BreadCrumbForVehicle from 'components/BreadCrumb/BreadCrumbForVehicle';
-import PayrollSidebar from 'components/PayrollSidebar/PayrollSidebar';
 import ReleaseNotesModal from 'components/ReleaseNotesModal';
 import AccomodationSideBar from 'components/SideBar/AccomodationSideBar';
+import PayrollSidebar from 'components/SideBar/PayrollSidebar';
 import VehicleSideBar from 'components/SideBar/VehicleSideBar';
 import dayjs from 'dayjs';
 import getBrowserFingerprint from 'get-browser-fingerprint';
-import { useEffect } from 'react';
-import { ProSidebarProvider } from 'react-pro-sidebar';
+import { useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import PrivateRoute from 'routes/PrivateRoute';
-import ProtectedRoute from 'routes/ProtectedRoute';
+import PermissionRoutes from 'routes/PageBuilding/index';
+import ProtectedRoute from 'routes/RouteChecking/ProtectedRoute';
 import packageJson from '../package.json';
 import './App.css';
-import PermissionRoutes from './routes/routes/index';
 // Create a QueryClient instance
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -45,7 +43,6 @@ const queryClient = new QueryClient({
 const LAYOUT_CONFIG = {
   payroll: {
     Sidebar: PayrollSidebar,
-    Breadcrumb: BreadCrumbForPayroll,
   },
   accommodation: {
     Sidebar: AccomodationSideBar,
@@ -62,10 +59,9 @@ const LAYOUT_CONFIG = {
 };
 
 // Footer Component
-const Footer = ({ sidebarOpenState }) => (
+const Footer = ({ isDarkMode }) => (
   <div
-    className={`${sidebarOpenState ? 'ml-[270px] pr-[20px]' : 'ml-[100px] pr-[20px]'
-      } bg-[#F5F5FA] transition-all duration-300 ease-in-out 
+    className={`transition-all duration-300 ease-in-out p-[20px] ${isDarkMode ? 'bg-[#141414]' : 'bg-[#F5F5FA]' }
     flex justify-between items-center gap-3 text-[11px] text-gray-600 max-sm:hidden`}
   >
     <div className="text-center sm:text-left">
@@ -81,13 +77,20 @@ const Footer = ({ sidebarOpenState }) => (
 );
 
 // Main Layout Component
-const MainLayout = ({ children, layoutType, sidebarOpenState, loaderFile }) => {
+const MainLayout = ({ children, layoutType, loaderFile }) => {
+  const [collapsed, setCollapsed] = useState(false);
+  const { isDarkMode } = useTheme();
+
   const config = LAYOUT_CONFIG[layoutType] || LAYOUT_CONFIG.default;
   const { Sidebar: SidebarComponent, Breadcrumb: BreadcrumbComponent } = config;
 
   return (
     <ConfigProvider
       theme={{
+        algorithm: isDarkMode ? theme.darkAlgorithm : theme.defaultAlgorithm,
+        token: {
+          colorPrimary: '#11686d',
+        },
         components: {
           Tabs: {
             itemSelectedColor: '#11686d',
@@ -95,46 +98,33 @@ const MainLayout = ({ children, layoutType, sidebarOpenState, loaderFile }) => {
             itemActiveColor: '#11686d',
             itemHoverColor: '#11686d90',
           },
-          Cascader: {
-            // itemHoverColor: '#11686d',
-            // itemActiveColor: '#11686d',
-            // optionSelectedColor: '#11686d',
-            // optionSelectedBg: 'grey',
-          },
-
         },
       }}
     >
-      <Spin
-        spinning={loaderFile}
-        tip="Loading..."
-        style={{
-          maxHeight: 200,
-        }}
-      >
-        <div className="bg-[#F5F5FA] flex">
-          <ProSidebarProvider>
-            <SidebarComponent />
-          </ProSidebarProvider>
-          <div className="w-full bg-[#F5F5FA]">
-            <div className="w-full h-[100px]">
-              <AdminHeader />
+      <Layout style={{ minHeight: '100vh' }}>
+        <SidebarComponent collapsed={collapsed} setCollapsed={setCollapsed} />
+        <Layout>
+          <AdminHeader />
+          <Layout.Content
+            style={{
+              margin: '24px 16px',
+              padding: 24,
+              minHeight: 280,
+              background: isDarkMode ? '#141414' : '#fff',
+              borderRadius: '8px',
+              overflowY: 'auto',
+            }}
+          >
+            <div className="mb-4">
+              <BreadcrumbComponent />
             </div>
-            <div
-              className={`p-[10px] transition-all duration-300 ease-in-out ${sidebarOpenState
-                ? 'ml-[250px] px-[20px]'
-                : 'ml-[80px] lg:pl-[110px] lg:pr-[30px] lg:ml-0'
-                } bg-[#F5F5FA] relative sm:h-[calc(100vh-117px)] h-[calc(100vh-100px)] overflow-y-auto`}
-            >
-              <div>
-                <BreadcrumbComponent />
-              </div>
-              <PrivateRoute>{children}</PrivateRoute>
-            </div>
-            <Footer sidebarOpenState={sidebarOpenState} />
-          </div>
-        </div>
-      </Spin>
+            <Spin spinning={!!loaderFile} tip="Loading...">
+              {children}
+            </Spin>
+          </Layout.Content>
+          <Footer isDarkMode={isDarkMode} />
+        </Layout>
+      </Layout>
     </ConfigProvider>
   );
 };
@@ -159,9 +149,9 @@ const getLayoutType = (item) => {
 // Route Element Component
 const RouteElement = ({ item, sidebarOpenState, loaderFile }) => {
   if (!item.isPrivate) {
-    return <>
+    return (
       <ProtectedRoute>{item.page}</ProtectedRoute>
-    </>
+    );
   }
 
   if (item.isOutFromLayout) {
@@ -170,23 +160,21 @@ const RouteElement = ({ item, sidebarOpenState, loaderFile }) => {
 
   const layoutType = getLayoutType(item);
   return (
-    <>
-      <MainLayout
-        layoutType={layoutType}
-        sidebarOpenState={sidebarOpenState}
-        loaderFile={loaderFile}
-      >
-        {item.page}
-      </MainLayout>
-    </>
+    <MainLayout
+      layoutType={layoutType}
+      sidebarOpenState={sidebarOpenState}
+      loaderFile={loaderFile}
+    >
+      {item.page}
+    </MainLayout>
   );
 };
 
 function App() {
   const { isMobile } = useDeviceDetect();
   const AllRoutes = PermissionRoutes();
-  const { sidebarOpenState } = useSelector((state) => state?.nonPersistedState);
-  const { loaderFile } = useSelector((state) => state?.nonPersistedState);
+  const { sidebarOpenState } = useSelector((state) => state?.nonPersistedState || {});
+  const { loaderFile } = useSelector((state) => state?.nonPersistedState || {});
 
   useEffect(() => {
     const handle = async () => {

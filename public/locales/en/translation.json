@@ -67,5 +67,13 @@
     "french": "French",
     "spanish": "Spanish",
     "urdu": "Urdu"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "payroll": "Payroll",
+    "accommodations": "Accommodations",
+    "vehicles": "Vehicles",
+    "employees": "Employees",
+    "settings": "Settings"
   }
 }

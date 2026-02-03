@@ -3,39 +3,26 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import HttpBackend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 
-/**
- * i18next configuration
- * Supports multiple languages with automatic detection
- * Loads translation files from /public/locales/{lang}/translation.json
- */
 i18n
-  .use(HttpBackend) // Load translations using http
-  .use(LanguageDetector) // Detect user language
-  .use(initReactI18next) // Pass i18n instance to react-i18next
+  .use(HttpBackend)
+  .use(LanguageDetector)
+  .use(initReactI18next)
   .init({
-    fallbackLng: 'en', // Fallback language if translation not found
-    debug: false, // Set to true for debugging
-    
-    // Supported languages
+    fallbackLng: 'en',
+    debug: false,
     supportedLngs: ['en', 'ar'],
-    
     interpolation: {
-      escapeValue: false, // React already escapes values
+      escapeValue: false,
     },
-    
     backend: {
-      // Path to translation files
-      loadPath: '/locales/{{lng}}/translation.json',
+      loadPath: '/locales/en/translation.json',
     },
-    
     detection: {
-      // Order of language detection
       order: ['localStorage', 'navigator', 'htmlTag'],
-      caches: ['localStorage'], // Cache user's language choice
-    },
-    
+      caches: ['localStorage'],
+    },    
     react: {
-      useSuspense: true, // Use Suspense for async loading
+      useSuspense: true,
     },
   });
 

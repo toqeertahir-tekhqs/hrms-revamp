@@ -1,4 +1,4 @@
-import LanguageSwitcher from '@/components/LanguageSwitcher';
+import LanguageSwitcher from '@/components/Language/LanguageSwitcher';
 import FormikInput from '@/components/ui/FormikInput';
 import FormikPassword from '@/components/ui/FormikPassword';
 import { mockPermissions } from '@/data/mockPermissions';

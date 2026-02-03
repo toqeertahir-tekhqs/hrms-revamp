@@ -12,8 +12,22 @@ export default defineConfig({
     postcss: './postcss.config.js',
   },
   resolve: {
+    extensions: ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json'],
     alias: {
       '@': path.resolve(__dirname, './src'),
+      '~': path.resolve(__dirname, './src'),
+      'components': path.resolve(__dirname, './src/components'),
+      'Hooks': path.resolve(__dirname, './src/Hooks'),
+      'utils': path.resolve(__dirname, './src/utils'),
+      'routes': path.resolve(__dirname, './src/routes'),
+      'pages': path.resolve(__dirname, './src/pages'),
+      'contexts': path.resolve(__dirname, './src/contexts'),
+      'store': path.resolve(__dirname, './src/store'),
+      'assets': path.resolve(__dirname, './src/assets'),
+      'configuration': path.resolve(__dirname, './src/configuration'),
+      'constants': path.resolve(__dirname, './src/constants'),
+      'i18n': path.resolve(__dirname, './src/i18n'),
+      'layouts': path.resolve(__dirname, './src/layouts'),
     },
   },
   server: {

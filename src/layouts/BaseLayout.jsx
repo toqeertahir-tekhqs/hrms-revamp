@@ -1,7 +1,6 @@
 import GenericSidebar from '@/components/GenericSidebar';
-import LanguageSwitcher from '@/components/LanguageSwitcher';
-import { useTheme } from '@/contexts/useTheme';
-import { useHasPermission } from '@/hooks/usePermission';
+import LanguageSwitcher from '@/components/Language/LanguageSwitcher';
+import { useTheme } from '@/contexts/ThemeContext';
 import {
   AppstoreOutlined,
   DownOutlined,

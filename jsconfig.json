@@ -1,0 +1,26 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"],
+			"~/*": ["./src/*"],
+			"components/*": ["./src/components/*"],
+			"Hooks/*": ["./src/Hooks/*"],
+			"utils/*": ["./src/utils/*"],
+			"routes/*": ["./src/routes/*"],
+			"pages/*": ["./src/pages/*"],
+			"contexts/*": ["./src/contexts/*"],
+			"store/*": ["./src/store/*"],
+			"assets/*": ["./src/assets/*"],
+			"configuration/*": ["./src/configuration/*"],
+			"constants/*": ["./src/constants/*"],
+			"i18n/*": ["./src/i18n/*"],
+			"layouts/*": ["./src/layouts/*"]
+		},
+		"target": "ES6",
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"jsx": "react-jsx"
+	},
+	"include": ["src"]
+}
