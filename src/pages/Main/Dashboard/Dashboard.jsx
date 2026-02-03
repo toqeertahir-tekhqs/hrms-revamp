@@ -1,6 +1,5 @@
-import { CustomSpin, CustomTable } from '@/components/ui';
+import { CustomButton, CustomCard, CustomSpin, CustomSteps, CustomTable, CustomTag } from '@/components/ui';
 import { DashboardOutlined, PlusOutlined, ReloadOutlined, SettingOutlined, TeamOutlined } from '@ant-design/icons';
-import { Button, Card, Steps, Tag } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,28 +14,6 @@ import { useNavigate } from 'react-router-dom';
  */
 const Dashboard = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
-
-  const sidebarItems = [
-    {
-      key: 'dashboard',
-      icon: <DashboardOutlined />,
-      label: t('navigation.dashboard'),
-      path: '/dashboard',
-    },
-    {
-      key: 'employees',
-      icon: <TeamOutlined />,
-      label: t('navigation.employees'),
-      path: '/employees',
-    },
-    {
-      key: 'settings',
-      icon: <SettingOutlined />,
-      label: t('navigation.settings'),
-      path: '/settings',
-    },
-  ];
 
   // Mock table data
   const dataSource = [
@@ -69,6 +46,7 @@ const Dashboard = () => {
       dataIndex: 'name',
       key: 'name',
       sorter: (a, b) => a.name.localeCompare(b.name),
+      showSorterTooltip: false,
     },
     {
       title: 'Age',
@@ -92,22 +70,23 @@ const Dashboard = () => {
       dataIndex: 'status',
       key: 'status',
       render: (status) => (
-        <Tag color={status === 'Active' ? 'green' : 'red'}>
+        <CustomTag color={status === 'Active' ? 'green' : 'red'}>
           {status}
-        </Tag>
+        </CustomTag>
       ),
     },
     {
       title: t('common.actions'),
       key: 'actions',
+      align: 'center',
       render: () => (
-        <div className="flex gap-2">
-          <Button size="default" type="link">
+        <div className="flex gap-2 justify-center">
+          <CustomButton size="default" type="link">
             {t('common.edit')}
-          </Button>
-          <Button size="default" type="link" danger>
+          </CustomButton>
+          <CustomButton size="default" type="link" danger>
             {t('common.delete')}
-          </Button>
+          </CustomButton>
         </div>
       ),
     },
@@ -118,14 +97,14 @@ const Dashboard = () => {
         {/* Page Title */}
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-bold">{t('dashboard.title')}</h1>
-          <Button type="primary" icon={<PlusOutlined />}>
+        <CustomButton type="primary" icon={<PlusOutlined />}>
             Add New
-          </Button>
+        </CustomButton>
         </div>
 
         {/* Steps Example */}
-        <Card title="Onboarding Process" extra={<Button icon={<ReloadOutlined />}>Reset</Button>}>
-          <Steps
+      <CustomCard title="Onboarding Process" extra={<CustomButton icon={<ReloadOutlined />}>Reset</CustomButton>}>
+        <CustomSteps
             current={1}
             items={[
               {
@@ -142,24 +121,24 @@ const Dashboard = () => {
               },
             ]}
           />
-        </Card>
+      </CustomCard>
 
-        <Card title="Employee List">
+      <CustomCard title="Employee List">
         <CustomTable
             dataSource={dataSource}
             columns={columns}
             pagination={{ pageSize: 5 }}
             scroll={{ x: true }}
           />
-        </Card>
+      </CustomCard>
 
         {/* Example with Spin (loading state) */}
-        <Card title="Loading Example">
+      <CustomCard title="Loading Example">
         <div className="py-8 text-center">
           <CustomSpin size="default" />
           <p className="mt-4 text-gray-500" style={{ color: 'var(--text-color)' }}>{t('common.loading')}</p>
           </div>
-        </Card>
+      </CustomCard>
     </div>
   );
 };
