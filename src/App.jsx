@@ -61,7 +61,7 @@ const LAYOUT_CONFIG = {
 // Footer Component
 const Footer = () => (
   <div
-    className="transition-all duration-300 ease-in-out p-[20px] bg-(--bg-container) flex justify-between items-center gap-3 text-[11px] text-gray-600 max-sm:hidden"
+    className="transition-all duration-300 ease-in-out px-[20px] py-[12px] bg-(--bg-container) flex justify-between items-center gap-3 text-[11px] text-gray-600 max-sm:hidden"
   >
     <div className="text-center sm:text-left">
       Copyright © {dayjs().format('YYYY')}{' '}
