@@ -4,6 +4,8 @@ import {
   DashboardOutlined,
   FileProtectOutlined,
   FileTextOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
   SettingOutlined
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
@@ -56,7 +58,7 @@ const PayrollSidebar = ({ collapsed, setCollapsed }) => {
       collapsed={collapsed}
       onCollapse={(value) => setCollapsed(value)}
       width={250}
-      className="overflow-y-auto h-screen"
+      className="flex flex-col h-screen"
       theme="light"
       style={{
         boxShadow: '2px 0 8px 0 rgba(0,0,0,.05)',
@@ -74,7 +76,7 @@ const PayrollSidebar = ({ collapsed, setCollapsed }) => {
         selectedKeys={selectedKeys}
         defaultOpenKeys={['payroll-setup']}
         items={menuItems}
-        style={{ borderRight: 0 }}
+        style={{ borderRight: 0, flex: 1 }}
         className="border-none"
       />
     </Sider>

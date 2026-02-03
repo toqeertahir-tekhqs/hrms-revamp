@@ -4,11 +4,12 @@ import { lazy, Suspense } from 'react';
 
 const Login = lazy(() => import('pages/Auth/Login'));
 
+import Dashboard from '@/pages/Main/Dashboard/Dashboard';
 import PayrollDashboard from 'pages/payroll/PayrollDashboard';
 import { ROUTE_PATHS } from 'routes/routes/index';
 const LoadingFallback = (
   <div className="flex justify-center items-center h-screen">
-    <Spin spinning size="large" />
+    <Spin spinning size="default" />
   </div>
 );
 
@@ -28,12 +29,12 @@ const PermissionRoutes = () => {
   const coreRoutes = [
     {
       path: ROUTE_PATHS.DASHBOARD_INDEX,
-      page: <><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div></>,
+      page: <><Dashboard /></>,
       isPrivate: true,
     },
     {
       path: ROUTE_PATHS.DASHBOARD,
-      page: <><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div><div>Hi</div></>,
+      page: <><Dashboard /></>,
       isPrivate: true,
     },
   ];

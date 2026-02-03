@@ -9,3 +9,30 @@
 	min-height: 100vh;
 	scrollbar-color: var(--color-primary) var(--bg-layout);
 }
+
+/* Custom Component Theme Overrides */
+.ant-spin-dot-item {
+	background-color: var(--color-spin, #11686d) !important;
+}
+.ant-spin-text {
+	color: var(--color-spin, #11686d) !important;
+}
+
+.custom-table-wrapper .ant-table {
+	background: var(--bg-container) !important;
+	color: var(--text-color) !important;
+}
+
+.custom-table-wrapper .ant-table-thead > tr > th {
+	background: var(--bg-layout) !important;
+	color: var(--text-color) !important;
+	border-bottom: 1px solid var(--border-color) !important;
+}
+
+.custom-table-wrapper .ant-table-tbody > tr > td {
+	border-bottom: 1px solid var(--border-color) !important;
+}
+
+.custom-table-wrapper .ant-table-tbody > tr:hover > td {
+	background: var(--hover-bg) !important;
+}

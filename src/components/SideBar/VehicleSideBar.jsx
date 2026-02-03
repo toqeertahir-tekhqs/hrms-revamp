@@ -3,7 +3,9 @@ import { ROUTE_PATHS } from '@/routes/routes/index';
 import {
   CarOutlined,
   DashboardOutlined,
-  FileSearchOutlined
+  FileSearchOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 import { useEffect, useState } from 'react';
@@ -48,7 +50,7 @@ const VehicleSideBar = ({ collapsed, setCollapsed }) => {
       collapsed={collapsed}
       onCollapse={(value) => setCollapsed(value)}
       width={250}
-      className="overflow-y-auto h-screen"
+      className="flex flex-col h-screen"
       theme="light"
       style={{
         boxShadow: '2px 0 8px 0 rgba(0,0,0,.05)',
@@ -65,7 +67,7 @@ const VehicleSideBar = ({ collapsed, setCollapsed }) => {
         mode="inline"
         selectedKeys={selectedKeys}
         items={menuItems}
-        style={{ borderRight: 0 }}
+        style={{ borderRight: 0, flex: 1 }}
         className="border-none"
       />
     </Sider>

@@ -1,4 +1,3 @@
-import { Spin } from 'antd';
 import 'antd/dist/reset.css';
 import { StrictMode, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -7,14 +6,11 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import AppWrapper from './AppWrapper.jsx';
+import Fallback from './components/Fallback.jsx';
 import i18n from './i18n/config';
 import './index.css';
 import { persistor, store } from './store/store';
 
-/**
- * Create React Query client
- * Configure default options for queries
- */
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -25,22 +21,15 @@ const queryClient = new QueryClient({
   },
 });
 
-/**
- * App Wrapper Component
- * Handles ConfigProvider direction updates based on language
- */
-
-
-/**
- * Render application with all providers
- */
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-      <PersistGate loading={<Spin size="large" />} persistor={persistor}>
+      <PersistGate loading={<Fallback />} persistor={persistor}>
         <QueryClientProvider client={queryClient}>
           <I18nextProvider i18n={i18n}>
-            <Suspense fallback={<Spin size="large" tip="Loading..." />}>
+            <Suspense fallback={
+              <Fallback />
+            }>
               <AppWrapper />
             </Suspense>
           </I18nextProvider>

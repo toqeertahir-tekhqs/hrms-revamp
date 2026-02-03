@@ -1,6 +1,7 @@
+import { CustomSpin } from '@/components/ui';
 import { useTheme } from '@/contexts/ThemeContext';
 import useDeviceDetect from 'Hooks/useDeviceDetect';
-import { ConfigProvider, Layout, Spin } from 'antd';
+import { ConfigProvider, Layout } from 'antd';
 import { AdminHeader, SideBar } from 'components';
 import Breadcrumbs from 'components/BreadCrumb';
 import BreadCrumbForAccommodation from 'components/BreadCrumb/BreadCrumbForAccommodation';
@@ -19,7 +20,7 @@ import PermissionRoutes from 'routes/PageBuilding/index';
 import ProtectedRoute from 'routes/RouteChecking/ProtectedRoute';
 import packageJson from '../package.json';
 import './App.css';
-// Create a QueryClient instance
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -27,19 +28,12 @@ const queryClient = new QueryClient({
       refetchOnMount: false,
       refetchOnReconnect: false,
       retry: 1,
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      cacheTime: 10 * 60 * 1000, // 10 minutes
+      staleTime: 5 * 60 * 1000,
+      cacheTime: 10 * 60 * 1000,
     },
   },
 });
-// 3cef45fb374b228cf08624ab2b75ea9b
-// 3cef45fb374b228cf08624ab2b75ea9b
-// 3cef45fb374b228cf08624ab2b75ea9b
-// 3036caee48090a556c31ea1ad11213c5
-// 0b606def820b2b7d415f166f1eb85f20
-// 
 
-// Layout configuration based on route type
 const LAYOUT_CONFIG = {
   payroll: {
     Sidebar: PayrollSidebar,
@@ -58,14 +52,13 @@ const LAYOUT_CONFIG = {
   },
 };
 
-// Footer Component
 const Footer = () => (
   <div
     className="transition-all duration-300 ease-in-out px-[20px] py-[12px] bg-(--bg-container) flex justify-between items-center gap-3 text-[11px] text-gray-600 max-sm:hidden"
   >
     <div className="text-center sm:text-left">
       Copyright © {dayjs().format('YYYY')}{' '}
-      <span className="text-(--color-primary) font-medium">Crootive</span>. All rights
+      <span className="text-(--color-primary) font-medium" onClick={() => window.open(import.meta.env.VITE_CROOTIVE_URL, '_blank')}>Crootive</span>. All rights
       reserved.
     </div>
     <div className="text-center text-gray-500 sm:text-right">
@@ -75,7 +68,6 @@ const Footer = () => (
   </div>
 );
 
-// Main Layout Component
 const MainLayout = ({ children, layoutType, loaderFile }) => {
   const [collapsed, setCollapsed] = useState(false);
   const { currentTheme } = useTheme();
@@ -95,14 +87,15 @@ const MainLayout = ({ children, layoutType, loaderFile }) => {
             itemActiveColor: currentTheme.token.colorPrimary,
             itemHoverColor: `${currentTheme.token.colorPrimary}90`,
           },
+          ...currentTheme.components,
         },
       }}
     >
+      <CustomSpin spinning={!!loaderFile} tip="Loading...">
       <Layout style={{ minHeight: '100vh', overflow: 'hidden' }}>
         <SidebarComponent collapsed={collapsed} setCollapsed={setCollapsed} />
         <Layout style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
-          <AdminHeader />
-
+            <AdminHeader />
           <div style={{ padding: '0 24px', marginTop: '16px' }}>
             <BreadcrumbComponent />
           </div>
@@ -118,14 +111,13 @@ const MainLayout = ({ children, layoutType, loaderFile }) => {
               minHeight: 0,
               scrollbarWidth: 'thin',
             }}
-          >
-            <Spin spinning={!!loaderFile} tip="Loading...">
+            >
               {children}
-            </Spin>
           </Layout.Content>
           <Footer />
         </Layout>
       </Layout>
+      </CustomSpin>
     </ConfigProvider>
   );
 };

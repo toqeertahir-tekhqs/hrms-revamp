@@ -1,14 +1,14 @@
 import { Spin } from 'antd';
-import { lazy, Suspense } from 'react';
-const Login = lazy(() => import('pages/Auth/Login'));
-import AccommodationDashboard from '~/pages/Accommodations/Dashboard';
-import VehicleDashboard from 'pages/Vehicle/Dashboard';
 import PayrollDashboard from 'pages/Payroll/PayrollDashboard';
 import PermissionDeniedComponent from 'pages/PermissionDenied/PermissionDeniedComponent';
+import VehicleDashboard from 'pages/Vehicle/Dashboard';
+import { lazy, Suspense } from 'react';
+import AccommodationDashboard from '~/pages/Accommodations/Dashboard';
+const Login = lazy(() => import('pages/Auth/Login'));
 
 const LoadingFallback = (
   <div className="flex justify-center items-center h-screen">
-    <Spin spinning size="large" />
+    <Spin spinning size="default" />
   </div>
 );
 

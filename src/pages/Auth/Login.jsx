@@ -75,12 +75,19 @@ const Login = () => {
         <LanguageSwitcher />
       </div>
       
-      <Card className="w-full max-w-md shadow-lg">
+      <Card
+        className="w-full max-w-md shadow-lg"
+        style={{
+          background: 'var(--bg-container)',
+          borderColor: 'var(--border-color)',
+          color: 'var(--text-color)'
+        }}
+      >
         <div className="mb-8 text-center">
-          <h1 className="mb-2 text-3xl font-bold text-gray-800">
+          <h1 className="mb-2 text-3xl font-bold" style={{ color: 'var(--text-color)' }}>
             {t('auth.login_title')}
           </h1>
-          <p className="text-gray-500">{t('auth.login_subtitle')}</p>
+          <p style={{ color: 'var(--text-color)', opacity: 0.7 }}>{t('auth.login_subtitle')}</p>
         </div>
 
         <Formik
@@ -94,20 +101,20 @@ const Login = () => {
                 name="email"
                 label={t('common.email')}
                 placeholder="user@example.com"
-                size="large"
+                size="default"
               />
 
               <FormikPassword
                 name="password"
                 label={t('common.password')}
                 placeholder="••••••••"
-                size="large"
+                size="default"
               />
 
               <Button
                 type="primary"
                 htmlType="submit"
-                size="large"
+                size="default"
                 loading={loading}
                 block
                 className="mt-4"

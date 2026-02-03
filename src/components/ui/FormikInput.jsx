@@ -15,6 +15,12 @@ const FormikInput = ({ name, label, ...props }) => {
         {...field}
         {...props}
         status={meta.touched && meta.error ? 'error' : ''}
+        style={{
+          background: 'var(--bg-container)',
+          color: 'var(--text-color)',
+          borderColor: 'var(--border-color)',
+          ...props.style
+        }}
       />
     </Form.Item>
   );

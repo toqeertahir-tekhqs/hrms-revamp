@@ -1,7 +1,9 @@
 
 import { ROUTE_PATHS } from '@/routes/routes/index';
 import {
-  DashboardOutlined
+  DashboardOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 import { useEffect, useState } from 'react';
@@ -35,7 +37,7 @@ const AccomodationSideBar = ({ collapsed, setCollapsed }) => {
       collapsed={collapsed}
       onCollapse={(value) => setCollapsed(value)}
       width={250}
-      className="overflow-y-auto h-screen"
+      className="flex flex-col h-screen"
       theme="light"
       style={{
         boxShadow: '2px 0 8px 0 rgba(0,0,0,.05)',
@@ -43,8 +45,8 @@ const AccomodationSideBar = ({ collapsed, setCollapsed }) => {
         background: 'var(--bg-container)',
       }}
     >
-      <div className="flex justify-center items-center h-16 border-b border-[var(--border-color)]">
-        <h1 className={`text-xl font-bold text-[var(--color-primary)] transition-all duration-300 ${collapsed ? 'scale-0' : 'scale-100'}`}>
+      <div className="flex justify-center items-center h-16 border-b border-(--border-color)">
+        <h1 className={`text-xl font-bold text-(--color-primary) transition-all duration-300 ${collapsed ? 'scale-0' : 'scale-100'}`}>
           Accommodation
         </h1>
       </div>
@@ -52,7 +54,7 @@ const AccomodationSideBar = ({ collapsed, setCollapsed }) => {
         mode="inline"
         selectedKeys={selectedKeys}
         items={menuItems}
-        style={{ borderRight: 0 }}
+        style={{ borderRight: 0, flex: 1 }}
         className="border-none"
       />
     </Sider>
