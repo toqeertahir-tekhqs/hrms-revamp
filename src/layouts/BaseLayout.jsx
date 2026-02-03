@@ -187,6 +187,7 @@ const BaseLayout = ({ sidebarItems = [], headerTitle = 'HRMS', children }) => {
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
             overflow: 'auto',
+            transition: 'all 0.3s ease',
           }}
         >
           {children}

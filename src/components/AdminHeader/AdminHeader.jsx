@@ -91,7 +91,7 @@ const AdminHeader = ({ collapsed, setCollapsed }) => {
     <Header
       style={{
         padding: '0 24px',
-        background: colorBgContainer,
+        background: 'var(--bg-container)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -144,8 +144,8 @@ const AdminHeader = ({ collapsed, setCollapsed }) => {
         <LanguageSwitcher />
         
         <Dropdown menu={{ items: userMenu }} placement="bottomRight" arrow>
-          <Space className="p-2 h-14 rounded-lg transition-colors cursor-pointer hover:bg-gray-50">
-            <Avatar icon={<UserOutlined />} style={{ backgroundColor: '#11686d' }} />
+          <Space className="p-2 h-14 rounded-lg transition-all duration-300 cursor-pointer hover:bg-(--hover-bg)">
+            <Avatar icon={<UserOutlined />} style={{ backgroundColor: 'var(--color-primary)' }} />
             <div className="hidden md:block">
               <div className="text-sm font-medium leading-none">Admin User</div>
               <div className="mt-1 text-xs text-gray-500">Administrator</div>

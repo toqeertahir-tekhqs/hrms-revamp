@@ -38,12 +38,13 @@ const SideBar = ({ collapsed, setCollapsed }) => {
       className="overflow-y-auto h-screen"
       theme="light"
       style={{
-        boxShadow: '2px 0 8px 0 rgba(29,35,41,.05)',
+        boxShadow: '2px 0 8px 0 rgba(0,0,0,.05)',
         zIndex: 10,
+        background: 'var(--bg-container)',
       }}
     >
-      <div className="flex justify-center items-center h-16 border-b border-gray-100">
-        <h1 className={`text-xl font-bold text-[#11686d] transition-all duration-300 ${collapsed ? 'scale-0' : 'scale-100'}`}>
+      <div className="flex justify-center items-center h-16 border-b border-[var(--border-color)]">
+        <h1 className={`text-xl font-bold text-[var(--color-primary)] transition-all duration-300 ${collapsed ? 'scale-0' : 'scale-100'}`}>
           HRMS
         </h1>
       </div>

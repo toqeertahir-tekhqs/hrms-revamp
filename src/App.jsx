@@ -61,11 +61,11 @@ const LAYOUT_CONFIG = {
 // Footer Component
 const Footer = () => (
   <div
-    className="transition-all duration-300 ease-in-out p-[20px] bg-[var(--bg-container)] flex justify-between items-center gap-3 text-[11px] text-gray-600 max-sm:hidden"
+    className="transition-all duration-300 ease-in-out p-[20px] bg-(--bg-container) flex justify-between items-center gap-3 text-[11px] text-gray-600 max-sm:hidden"
   >
     <div className="text-center sm:text-left">
       Copyright © {dayjs().format('YYYY')}{' '}
-      <span className="text-[#11686d] font-medium">Crootive</span>. All rights
+      <span className="text-(--color-primary) font-medium">Crootive</span>. All rights
       reserved.
     </div>
     <div className="text-center text-gray-500 sm:text-right">
@@ -111,11 +111,12 @@ const MainLayout = ({ children, layoutType, loaderFile }) => {
             style={{
               margin: '16px 16px 24px',
               padding: 24,
-              background: 'var(--bg-container)', // Use CSS Variable from Theme
+              background: 'var(--bg-container)',
               borderRadius: '8px',
               overflowY: 'auto',
               flex: 1, 
-              minHeight: 0 // Important for flex child scrolling
+              minHeight: 0,
+              scrollbarWidth: 'thin',
             }}
           >
             <Spin spinning={!!loaderFile} tip="Loading...">
