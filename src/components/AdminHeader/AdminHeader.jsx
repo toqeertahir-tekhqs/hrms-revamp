@@ -4,18 +4,19 @@ import { useTheme } from '@/contexts/ThemeContext';
 import {
   AppstoreOutlined,
   DownOutlined, LogoutOutlined,
-  MoonOutlined,
-  SunOutlined, UserOutlined
+  UserOutlined
 } from '@ant-design/icons';
-import { Avatar, Button, Dropdown, Layout, Space, Switch, theme } from 'antd';
+import { Avatar, Button, Dropdown, Layout, Space, theme } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 const { Header } = Layout;
 
-const AdminHeader = () => {
+import { THEMES } from '@/config/themeConfig';
+
+const AdminHeader = ({ collapsed, setCollapsed }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { toggleTheme, isDarkMode } = useTheme();
+  const { changeTheme, currentThemeKey } = useTheme();
   
   const {
       token: { colorBgContainer },
@@ -122,17 +123,23 @@ const AdminHeader = () => {
           </Dropdown>
         )}
 
-        {/* Dark Mode Toggle */}
-        <div className="flex gap-2 items-center">
-          <SunOutlined className={!isDarkMode ? 'text-yellow-500' : 'text-gray-400'} />
-          <Switch
-            checked={isDarkMode}
-            onChange={toggleTheme}
-            checkedChildren={<MoonOutlined />}
-            unCheckedChildren={<SunOutlined />}
-          />
-          <MoonOutlined className={isDarkMode ? 'text-blue-500' : 'text-gray-400'} />
-        </div>
+        {/* Theme Selector Dropdown */}
+        <Dropdown
+          menu={{
+            items: Object.values(THEMES).map(theme => ({
+              key: theme.key,
+              label: theme.name,
+              onClick: () => changeTheme(theme.key)
+            })),
+            selectable: true,
+            selectedKeys: [currentThemeKey]
+          }}
+          trigger={['click']}
+        >
+          <Button type="text" icon={<span style={{ fontSize: '18px' }}>🎨</span>}>
+            {THEMES[currentThemeKey]?.name || 'Theme'}
+          </Button>
+        </Dropdown>
 
         <LanguageSwitcher />
         

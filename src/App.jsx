@@ -1,6 +1,6 @@
 import { useTheme } from '@/contexts/ThemeContext';
 import useDeviceDetect from 'Hooks/useDeviceDetect';
-import { ConfigProvider, Layout, Spin, theme } from 'antd';
+import { ConfigProvider, Layout, Spin } from 'antd';
 import { AdminHeader, SideBar } from 'components';
 import Breadcrumbs from 'components/BreadCrumb';
 import BreadCrumbForAccommodation from 'components/BreadCrumb/BreadCrumbForAccommodation';
@@ -59,10 +59,9 @@ const LAYOUT_CONFIG = {
 };
 
 // Footer Component
-const Footer = ({ isDarkMode }) => (
+const Footer = () => (
   <div
-    className={`transition-all duration-300 ease-in-out p-[20px] ${isDarkMode ? 'bg-[#141414]' : 'bg-[#ffffff]' }
-    flex justify-between items-center gap-3 text-[11px] text-gray-600 max-sm:hidden`}
+    className="transition-all duration-300 ease-in-out p-[20px] bg-[var(--bg-container)] flex justify-between items-center gap-3 text-[11px] text-gray-600 max-sm:hidden"
   >
     <div className="text-center sm:text-left">
       Copyright © {dayjs().format('YYYY')}{' '}
@@ -79,7 +78,7 @@ const Footer = ({ isDarkMode }) => (
 // Main Layout Component
 const MainLayout = ({ children, layoutType, loaderFile }) => {
   const [collapsed, setCollapsed] = useState(false);
-  const { isDarkMode } = useTheme();
+  const { currentTheme } = useTheme();
 
   const config = LAYOUT_CONFIG[layoutType] || LAYOUT_CONFIG.default;
   const { Sidebar: SidebarComponent, Breadcrumb: BreadcrumbComponent } = config;
@@ -87,16 +86,14 @@ const MainLayout = ({ children, layoutType, loaderFile }) => {
   return (
     <ConfigProvider
       theme={{
-        algorithm: isDarkMode ? theme.darkAlgorithm : theme.defaultAlgorithm,
-        token: {
-          colorPrimary: '#11686d',
-        },
+        algorithm: currentTheme.algorithm,
+        token: currentTheme.token,
         components: {
           Tabs: {
-            itemSelectedColor: '#11686d',
-            inkBarColor: '#11686d',
-            itemActiveColor: '#11686d',
-            itemHoverColor: '#11686d90',
+            itemSelectedColor: currentTheme.token.colorPrimary,
+            inkBarColor: currentTheme.token.colorPrimary,
+            itemActiveColor: currentTheme.token.colorPrimary,
+            itemHoverColor: `${currentTheme.token.colorPrimary}90`,
           },
         },
       }}
@@ -113,22 +110,19 @@ const MainLayout = ({ children, layoutType, loaderFile }) => {
           <Layout.Content
             style={{
               margin: '16px 16px 24px',
-              padding: 16,
-              border: isDarkMode ? '4px solid #141414' : '4px solid #fff',
-              background: isDarkMode ? '#141414' : '#fff',
+              padding: 24,
+              background: 'var(--bg-container)', // Use CSS Variable from Theme
               borderRadius: '8px',
               overflowY: 'auto',
-              flex: 1,
-              minHeight: 0, // Important for flex child scrolling
-              scrollbarWidth: 'thin',
-              scrollbarColor: '#11686d #f5f5fa',
+              flex: 1, 
+              minHeight: 0 // Important for flex child scrolling
             }}
           >
             <Spin spinning={!!loaderFile} tip="Loading...">
               {children}
             </Spin>
           </Layout.Content>
-          <Footer isDarkMode={isDarkMode} />
+          <Footer />
         </Layout>
       </Layout>
     </ConfigProvider>
