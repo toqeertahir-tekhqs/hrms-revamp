@@ -22,10 +22,10 @@ const SideBar = ({ collapsed, setCollapsed }) => {
 
   const menuItems = [
     {
-      key: ROUTE_PATHS.DASHBOARD_INDEX,
+      key: ROUTE_PATHS.DASHBOARD,
       icon: <DashboardOutlined />,
       label: t('sidebar.dashboard') || 'Dashboard',
-      onClick: () => navigate(ROUTE_PATHS.DASHBOARD_INDEX),
+      onClick: () => navigate(ROUTE_PATHS.DASHBOARD),
     },
   ];
 
@@ -43,8 +43,8 @@ const SideBar = ({ collapsed, setCollapsed }) => {
         background: 'var(--bg-container)',
       }}
     >
-      <div className="flex justify-center items-center h-16 border-b border-[var(--border-color)]">
-        <h1 className={`text-xl font-bold text-[var(--color-primary)] transition-all duration-300 ${collapsed ? 'scale-0' : 'scale-100'}`}>
+      <div className="flex justify-center items-center h-16 border-b border-var(--border-color)">
+        <h1 className={`text-xl font-bold text-var(--color-primary) transition-all duration-300 ${collapsed ? 'scale-0' : 'scale-100'}`}>
           HRMS
         </h1>
       </div>
