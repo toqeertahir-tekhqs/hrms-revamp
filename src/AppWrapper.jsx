@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import App from "./App";
 import { ThemeProvider, useTheme } from "./contexts/ThemeContext";
-import { getDirection } from "./utils/rtlConfig";
+import { getDirection } from "./utils/Config/rtlConfig";
 
 const AppContent = () => {
     const { i18n: i18nInstance } = useTranslation();

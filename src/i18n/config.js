@@ -17,7 +17,7 @@ i18n
     debug: false, // Set to true for debugging
     
     // Supported languages
-    supportedLngs: ['en', 'ar', 'fr', 'es', 'ur'],
+    supportedLngs: ['en', 'ar'],
     
     interpolation: {
       escapeValue: false, // React already escapes values

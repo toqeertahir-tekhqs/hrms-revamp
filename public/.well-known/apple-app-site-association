@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "AD843B8T5K.com.crootive.hrms",
+        "paths": [
+          "/set-password",
+          "/set-password/*"
+        ]
+      }
+    ]
+  }
+}

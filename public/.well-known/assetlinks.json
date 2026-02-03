@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.tekhqs.tekhr",
+      "sha256_cert_fingerprints": [
+        "FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C",
+        "03:4A:1C:1F:DE:2D:22:28:F1:42:79:1D:6F:34:CD:75:07:61:E3:58:8F:6A:11:BD:CB:1D:5F:45:9B:DA:4D:EA"
+      ]
+    }
+  }
+]

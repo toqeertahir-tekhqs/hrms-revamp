@@ -9,7 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import AppWrapper from './AppWrapper.jsx';
 import i18n from './i18n/config';
 import './index.css';
-import { persistor, store } from './store';
+import { persistor, store } from './store/store';
 
 /**
  * Create React Query client

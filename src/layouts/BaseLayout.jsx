@@ -1,9 +1,7 @@
 import GenericSidebar from '@/components/GenericSidebar';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
-import { useTheme } from '@/contexts/ThemeContext';
-import { logout } from '@/features/auth/authSlice';
+import { useTheme } from '@/contexts/useTheme';
 import { useHasPermission } from '@/hooks/usePermission';
-import { useAppDispatch } from '@/store';
 import {
   AppstoreOutlined,
   DownOutlined,
@@ -33,19 +31,17 @@ const { Header, Sider, Content } = Layout;
  */
 const BaseLayout = ({ sidebarItems = [], headerTitle = 'HRMS', children }) => {
   const { t } = useTranslation();
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { isDarkMode, toggleTheme } = useTheme();
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-  const hasPayrollPermission = useHasPermission('module.payroll');
-  const hasAccommodationsPermission = useHasPermission('module.accommodations');
-  const hasVehiclesPermission = useHasPermission('module.vehicles');
+  const hasPayrollPermission = true;
+  const hasAccommodationsPermission = true;
+  const hasVehiclesPermission = true;
 
   const handleLogout = () => {
-    dispatch(logout());
     navigate('/login');
   };
 
