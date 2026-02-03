@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 const { Header } = Layout;
 
-import { THEMES } from '@/config/themeConfig';
+import { THEMES } from '@/themeConfig/themeConfig';
 
 const AdminHeader = ({ collapsed, setCollapsed }) => {
   const { t } = useTranslation();

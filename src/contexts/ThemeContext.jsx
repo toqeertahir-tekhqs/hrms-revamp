@@ -1,4 +1,4 @@
-import { DEFAULT_THEME_KEY, THEMES } from '@/config/themeConfig';
+import { DEFAULT_THEME_KEY, THEMES } from '@/themeConfig/themeConfig';
 import { createContext, useContext, useEffect, useState } from 'react';
 
 const ThemeContext = createContext(null);
