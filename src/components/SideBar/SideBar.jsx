@@ -54,6 +54,7 @@ const SideBar = ({ collapsed, setCollapsed }) => {
         items={menuItems}
         style={{ borderRight: 0 }}
         className="border-none"
+
       />
     </Sider>
   );

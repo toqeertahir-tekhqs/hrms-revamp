@@ -1,15 +1,12 @@
 import LanguageSwitcher from '@/components/Language/LanguageSwitcher';
 import FormikInput from '@/components/ui/FormikInput';
 import FormikPassword from '@/components/ui/FormikPassword';
-import { mockPermissions } from '@/data/mockPermissions';
-import { login as loginAction } from '@/features/auth/authSlice';
-import { useAppDispatch } from '@/store';
-import { error as showError, success } from '@/utils/notification';
-import { mapPermissions } from '@/utils/permissionMapping';
+import { setUserData } from '@/store/slices';
 import { Button, Card } from 'antd';
 import { Form, Formik } from 'formik';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
@@ -24,7 +21,7 @@ import * as Yup from 'yup';
 const Login = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
   // Validation schema with Yup
@@ -48,10 +45,7 @@ const Login = () => {
     setLoading(true);
     
     try {
-      // TODO: Replace with actual API call
-      // Example: const response = await post('/auth/login', values);
-      
-      // Mock login request
+
       setTimeout(() => {
         const mockUser = {
           id: 1,
@@ -60,12 +54,9 @@ const Login = () => {
         };
         const mockToken = 'mock-jwt-token';
         
-        // Map permissions from detailed JSON to simple strings
-        const mappedPermissions = mapPermissions(mockPermissions);
-        
-        console.log('Login: Mapped Permissions:', mappedPermissions);
-
-        dispatch(loginAction({ user: mockUser, token: mockToken, permissions: mappedPermissions }));
+        dispatch(setUserData({
+          user: mockUser, token: mockToken
+        }));
         
         success(t('auth.login_success'));
         navigate('/dashboard');

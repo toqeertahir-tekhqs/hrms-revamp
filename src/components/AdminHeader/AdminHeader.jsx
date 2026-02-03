@@ -3,20 +3,24 @@ import LanguageSwitcher from '@/components/Language/LanguageSwitcher';
 import { useTheme } from '@/contexts/ThemeContext';
 import {
   AppstoreOutlined,
-  DownOutlined, LogoutOutlined, MoonOutlined,
+  DownOutlined, LogoutOutlined,
+  MoonOutlined,
   SunOutlined, UserOutlined
 } from '@ant-design/icons';
 import { Avatar, Button, Dropdown, Layout, Space, Switch, theme } from 'antd';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 const { Header } = Layout;
 
 const AdminHeader = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { toggleTheme, isDarkMode } = useTheme();
   
   const {
       token: { colorBgContainer },
   } = theme.useToken();
+
   const handleLogout = () => {
     navigate('/login');
   };
@@ -45,7 +49,7 @@ const AdminHeader = () => {
     {
       key: 'dashboard',
       label: t('dashboard.title', 'Dashboard'),
-      icon: <span className="text-lg">🏠`</span>,
+      icon: <span className="text-lg">🏠</span>,
     },
     {
       key: 'payroll',
@@ -78,6 +82,7 @@ const AdminHeader = () => {
       label: t('header.logout') || 'Logout',
       icon: <LogoutOutlined />,
       danger: true,
+      onClick: handleLogout,
     },
   ];
 
@@ -93,7 +98,8 @@ const AdminHeader = () => {
         zIndex: 1,
       }}
     >
-      <div className="flex gap-4 items-center"></div>
+      <div className="flex gap-4 items-center">
+      </div>
 
       <div className="flex gap-6 items-center">
         {moduleMenuItems?.length > 0 && (
@@ -131,7 +137,7 @@ const AdminHeader = () => {
         <LanguageSwitcher />
         
         <Dropdown menu={{ items: userMenu }} placement="bottomRight" arrow>
-          <Space className="p-2 rounded-lg transition-colors cursor-pointer hover:bg-gray-50">
+          <Space className="p-2 h-14 rounded-lg transition-colors cursor-pointer hover:bg-gray-50">
             <Avatar icon={<UserOutlined />} style={{ backgroundColor: '#11686d' }} />
             <div className="hidden md:block">
               <div className="text-sm font-medium leading-none">Admin User</div>

@@ -61,7 +61,7 @@ const LAYOUT_CONFIG = {
 // Footer Component
 const Footer = ({ isDarkMode }) => (
   <div
-    className={`transition-all duration-300 ease-in-out p-[20px] ${isDarkMode ? 'bg-[#141414]' : 'bg-[#F5F5FA]' }
+    className={`transition-all duration-300 ease-in-out p-[20px] ${isDarkMode ? 'bg-[#141414]' : 'bg-[#ffffff]' }
     flex justify-between items-center gap-3 text-[11px] text-gray-600 max-sm:hidden`}
   >
     <div className="text-center sm:text-left">
@@ -101,23 +101,29 @@ const MainLayout = ({ children, layoutType, loaderFile }) => {
         },
       }}
     >
-      <Layout style={{ minHeight: '100vh' }}>
+      <Layout style={{ minHeight: '100vh', overflow: 'hidden' }}>
         <SidebarComponent collapsed={collapsed} setCollapsed={setCollapsed} />
-        <Layout>
+        <Layout style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
           <AdminHeader />
+
+          <div style={{ padding: '0 24px', marginTop: '16px' }}>
+            <BreadcrumbComponent />
+          </div>
+
           <Layout.Content
             style={{
-              margin: '24px 16px',
-              padding: 24,
-              minHeight: 280,
+              margin: '16px 16px 24px',
+              padding: 16,
+              border: isDarkMode ? '4px solid #141414' : '4px solid #fff',
               background: isDarkMode ? '#141414' : '#fff',
               borderRadius: '8px',
               overflowY: 'auto',
+              flex: 1,
+              minHeight: 0, // Important for flex child scrolling
+              scrollbarWidth: 'thin',
+              scrollbarColor: '#11686d #f5f5fa',
             }}
           >
-            <div className="mb-4">
-              <BreadcrumbComponent />
-            </div>
             <Spin spinning={!!loaderFile} tip="Loading...">
               {children}
             </Spin>

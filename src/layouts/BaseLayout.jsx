@@ -1,4 +1,3 @@
-import GenericSidebar from '@/components/GenericSidebar';
 import LanguageSwitcher from '@/components/Language/LanguageSwitcher';
 import { useTheme } from '@/contexts/ThemeContext';
 import {
@@ -110,7 +109,7 @@ const BaseLayout = ({ sidebarItems = [], headerTitle = 'HRMS', children }) => {
         </div>
         
         {/* Sidebar Menu */}
-        <GenericSidebar items={sidebarItems} />
+        {/* <GenericSidebar items={sidebarItems} /> */}
       </Sider>
 
       {/* Main Layout */}

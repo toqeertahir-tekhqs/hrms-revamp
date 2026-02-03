@@ -75,5 +75,10 @@
     "vehicles": "Vehicles",
     "employees": "Employees",
     "settings": "Settings"
+  },
+  "header": {
+    "logout": "Logout",
+    "profile": "Profile",
+    "settings": "Settings"
   }
 }
