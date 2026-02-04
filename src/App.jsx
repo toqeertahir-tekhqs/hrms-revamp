@@ -1,3 +1,4 @@
+import SEO from '@/components/SEO/SEO';
 import { CustomSpin } from '@/components/ui';
 import { useTheme } from '@/contexts/ThemeContext';
 import useDeviceDetect from 'Hooks/useDeviceDetect';
@@ -188,6 +189,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+        <SEO />
         {false && <ReleaseNotesModal />}
         <Routes>
           {AllRoutes?.map((item, index) => (
