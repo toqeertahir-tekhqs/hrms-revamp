@@ -1,6 +1,7 @@
 import { ConfigProvider, theme as antdTheme } from "antd";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { ThemeProvider, useTheme } from "./contexts/ThemeContext";
 import { getDirection } from "./utils/Config/rtlConfig";
@@ -21,7 +22,11 @@ const AppContent = () => {
                 algorithm: isDarkMode ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
             }}
         >
-            <App />
+            <BrowserRouter>
+                {/* <AuthProvider> */}
+                <App />
+                {/* </AuthProvider> */}
+            </BrowserRouter>
         </ConfigProvider>
     );
 };

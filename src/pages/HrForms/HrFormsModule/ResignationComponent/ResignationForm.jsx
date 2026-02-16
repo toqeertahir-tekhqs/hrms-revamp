@@ -1,7 +1,7 @@
 import React from 'react';
 
-const ResignationForm = () => <div className='p-10 text-center text-gray-500 border-2 border-dashed border-gray-300 rounded-lg m-4'>
-  <h2 className='text-xl font-semibold mb-2'>Coming Soon</h2>
+const ResignationForm = () => <div className='p-10 m-4 text-center text-gray-500 rounded-lg border-2 border-gray-300 border-dashed'>
+  <h2 className='mb-2 text-xl font-semibold'>Coming Soon</h2>
   <p>The page <strong>ResignationForm</strong> is under development.</p>
 </div>;
 

@@ -11,18 +11,24 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 const { Header } = Layout;
 
+import { setToken } from '@/store/slices';
 import { THEMES } from '@/themeConfig';
+import { useDispatch } from 'react-redux';
 
 const AdminHeader = ({ collapsed, setCollapsed }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { changeTheme, currentThemeKey } = useTheme();
-  
+  const dispatch = useDispatch();
   const {
       token: { colorBgContainer },
   } = theme.useToken();
 
   const handleLogout = () => {
+    dispatch(setToken(''))
+    localStorage.clear();
+    sessionStorage.clear();
+    console.log('logout');
     navigate('/login');
   };
 

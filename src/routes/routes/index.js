@@ -4,6 +4,11 @@
 export const ROUTE_PATHS = Object.freeze({
   // Authentication Routes
   LOGIN: '/login',
+  FORGOT_PASSWORD: '/forgot-password',
+  RESET_PASSWORD: '/reset-password',
+  SET_PASSWORD: '/set-password',
+  EMAIL_SENT: '/email-sent',
+  EMAIL_VERIFY: '/email-verify',
   // Core Routes
   DASHBOARD: '/',
   DASHBOARD_INDEX: '/dashboard',

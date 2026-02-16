@@ -8,6 +8,7 @@
 	box-sizing: border-box;
 	min-height: 100vh;
 	scrollbar-color: var(--color-primary) var(--bg-layout);
+	scrollbar-width: thin;
 }
 
 /* Custom Component Theme Overrides */

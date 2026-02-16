@@ -1,23 +1,28 @@
 import { Form, Input } from 'antd';
 import { useField } from 'formik';
 
-const FormikInput = ({ name, label, ...props }) => {
+const FormikInput = ({ name, label, required, ...props }) => {
   const [field, meta] = useField(name);
-  
+
+  const isError = meta.touched && meta.error;
+
   return (
     <Form.Item
-      label={label}
-      validateStatus={meta.touched && meta.error ? 'error' : ''}
-      help={meta.touched && meta.error ? meta.error : null}
+      layout='vertical'
+      label={label ? <div className='field-label'>{label}</div> : null}
+      validateStatus={isError ? 'error' : ''}
+      help={isError ? meta.error : null}
       className="mb-4"
+      tooltip={props?.tooltip}
+      required={required}
     >
       <Input
         {...field}
         {...props}
-        status={meta.touched && meta.error ? 'error' : ''}
+        status={isError ? 'error' : ''}
         style={{
-          background: 'var(--bg-container)',
-          color: 'var(--text-color)',
+          background: 'var(--bg-base)',
+          color: 'var(--color-text-fields) !important',
           borderColor: 'var(--border-color)',
           ...props.style
         }}

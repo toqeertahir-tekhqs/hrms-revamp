@@ -16,8 +16,8 @@ import getBrowserFingerprint from 'get-browser-fingerprint';
 import { useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { useSelector } from 'react-redux';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import PermissionRoutes from 'routes/PageBuilding/index';
+import { Route, Routes } from 'react-router-dom';
+import PermissionRoutes from 'routes/PageBuilding/BasePageBuilding';
 import ProtectedRoute from 'routes/RouteChecking/ProtectedRoute';
 import packageJson from '../package.json';
 import './App.css';
@@ -188,25 +188,23 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <SEO />
-        {false && <ReleaseNotesModal />}
-        <Routes>
-          {AllRoutes?.map((item, index) => (
-            <Route
-              key={index}
-              path={item?.path}
-              element={
-                <RouteElement
-                  item={item}
-                  sidebarOpenState={sidebarOpenState}
-                  loaderFile={loaderFile}
-                />
-              }
-            />
-          ))}
-        </Routes>
-      </BrowserRouter>
+      <SEO />
+      {false && <ReleaseNotesModal />}
+      <Routes>
+        {AllRoutes?.map((item, index) => (
+          <Route
+            key={index}
+            path={item?.path}
+            element={
+              <RouteElement
+                item={item}
+                sidebarOpenState={sidebarOpenState}
+                loaderFile={loaderFile}
+              />
+            }
+          />
+        ))}
+      </Routes>
     </QueryClientProvider>
   );
 }

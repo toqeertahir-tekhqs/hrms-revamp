@@ -5,11 +5,7 @@ export default {
     "./src/**/*.{js,jsx}",
   ],
   theme: {
-    extend: {
-      // Add custom theme extensions here
-    },
+    extend: {},
   },
   plugins: [],
-  // Important: Tailwind utilities can override Ant Design via CSS specificity
-  // No prefix needed - use utility classes directly
 }

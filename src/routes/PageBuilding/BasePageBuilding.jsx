@@ -1,41 +1,42 @@
-import { Spin } from 'antd';
-import PayrollDashboard from 'pages/Payroll/PayrollDashboard';
+import { usePermissionVariables } from '@/Hooks/HasPermission';
+import Dashboard from '@/pages/Main/Dashboard/Dashboard';
 import PermissionDeniedComponent from 'pages/PermissionDenied/PermissionDeniedComponent';
 import VehicleDashboard from 'pages/Vehicle/Dashboard';
-import { lazy, Suspense } from 'react';
+import { ROUTE_PATHS } from 'routes/routes';
 import AccommodationDashboard from '~/pages/Accommodations/Dashboard';
-const Login = lazy(() => import('pages/Auth/Login'));
-
-const LoadingFallback = (
-  <div className="flex justify-center items-center h-screen">
-    <Spin spinning size="default" />
-  </div>
-);
+import ForgotPassword from '~/pages/Auth/ForgetPassword';
+import Login from '~/pages/Auth/Login';
 
 const PermissionRoutes = () => {
+  const { Accommodation_View, Vehicle_View }= usePermissionVariables()
   const authRoutes = [
     {
       path: ROUTE_PATHS.LOGIN,
       page: (
-        <Suspense fallback={LoadingFallback}>
-          <Login />
-        </Suspense>
+        <Login />
       ),
       isPrivate: false,
       permission: true,
     },
-
+    {
+      path: ROUTE_PATHS.FORGOT_PASSWORD,
+      page: (
+        <ForgotPassword />
+      ),
+      isPrivate: false,
+      permission: true,
+    },
   ];
 
   const coreRoutes = [
     {
       path: ROUTE_PATHS.DASHBOARD_INDEX,
-      page: <DashboardSwitch />,
+      page: <Dashboard />,
       isPrivate: true,
     },
     {
       path: ROUTE_PATHS.DASHBOARD,
-      page: <DashboardSwitch />,
+      page: <Dashboard />,
       isPrivate: true,
     },
 
@@ -68,7 +69,7 @@ const PermissionRoutes = () => {
   const payrollRoutes = [
     {
       path: ROUTE_PATHS.PAYROLL_DASHBOARD,
-      page: <PayrollDashboard />,
+      page: <></>,
       isPrivate: true,
       isPayrollRoute: true,
     },
