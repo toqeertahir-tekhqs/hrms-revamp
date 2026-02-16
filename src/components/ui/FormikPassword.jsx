@@ -1,7 +1,7 @@
 import { Form, Input } from 'antd';
 import { useField } from 'formik';
 
-const FormikPassword = ({ name, label, ...props }) => {
+const FormikPassword = ({ name, label, layout = 'vertical', ...props }) => {
   const [field, meta] = useField(name);
 
   return (
@@ -10,7 +10,7 @@ const FormikPassword = ({ name, label, ...props }) => {
       validateStatus={meta.touched && meta.error ? 'error' : ''}
       help={meta.touched && meta.error ? meta.error : null}
       className="mb-4"
-      layout='vertical'
+      layout={layout}
       tooltip={props?.tooltip}
       required={props?.required}
     >

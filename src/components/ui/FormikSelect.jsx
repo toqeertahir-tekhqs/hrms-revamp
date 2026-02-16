@@ -1,44 +1,44 @@
 import { Form, Select } from 'antd';
 import { useField, useFormikContext } from 'formik';
 
-const FormikSelect = ({ name, label, options, placeholder, ...props }) => {
+const FormikSelect = ({
+  name,
+  label,
+  options,
+  placeholder,
+  required,
+  tooltip,
+  layout = 'vertical',
+  ...props
+}) => {
   const [field, meta] = useField(name);
   const { setFieldValue } = useFormikContext();
 
+  const isError = meta.touched && meta.error;
+
   const handleChange = (value) => {
     setFieldValue(name, value);
-    if (props.onChange) {
-      props.onChange(value);
-    }
+    props?.onChange?.(value);
   };
 
   return (
     <Form.Item
-      label={label ? <div className='field-label'>{label}</div> : null}
-      validateStatus={meta.touched && meta.error ? 'error' : ''}
+      label={label}
+      validateStatus={isError ? 'error' : ''}
       help={meta.touched && meta.error ? meta.error : null}
       className="mb-4"
-      layout='vertical'
+      layout={layout}
       tooltip={props?.tooltip}
       required={props?.required}
-
     >
       <Select
-        {...field}
         {...props}
-        value={field.value}
-        onChange={props?.onChange ? props?.onChange : handleChange}
-        placeholder="Select a option and change input text above"
-
+        value={field.value || undefined}   // ⭐ IMPORTANT FIX
+        onChange={handleChange}
+        placeholder={placeholder || 'Select option'}
         options={options}
-        status={meta.touched && meta.error ? 'error' : ''}
-        style={{
-          background: 'var(--bg-base)',
-          color: 'var(--color-text-fields) !important',
-          borderColor: 'var(--border-color)',
-          borderRadius: 'var(--radius-md)',
-          ...props.style
-        }}
+        status={isError ? 'error' : ''}
+        allowClear
       />
     </Form.Item>
   );

@@ -2,6 +2,7 @@ import ArrowLeftIcon from '@/components/icons/ArrowLeftIcon.svg?react';
 import FormikInput from '@/components/ui/FormikInput';
 import FormikPassword from '@/components/ui/FormikPassword';
 import FormikSelect from '@/components/ui/FormikSelect';
+import useAxiosClient from '@/configuration/useAxiosClient';
 import useReactQuery from '@/configuration/useReactQuery';
 import { setPreLoginToken, setToken, setUserData, setUserPermissions } from '@/store/slices';
 import { Button, message } from 'antd';
@@ -21,11 +22,10 @@ const Login = () => {
   const dispatch = useDispatch();
   const [selectCompany, setSelectCompany] = useState(false);
   const [getCompany, setGetCompany] = useState([]);
-
+  const [isSwitchLoading, setIsSwitchLoading] = useState(false);
   const { usePostMutation } = useReactQuery();
   const { mutateAsync: login, isLoading: isLoginLoading } = usePostMutation('/api/UserProfile/SignIn');
-  const { mutateAsync: switchCompany, isLoading: isSwitchLoading } = usePostMutation('/api/UserProfile/SwitchCompany');
-
+  const { postRequestPreLogin } = useAxiosClient()
   // Regex for username validation
   const usernameRegex = /^[a-zA-Z0-9._-]+$/;
 
@@ -131,17 +131,12 @@ const Login = () => {
 
   const handleCompanySubmit = async (values, { setSubmitting }) => {
     try {
-      // The snippet used postRequestPreLogin('/api/UserProfile/SwitchCompany', companyId)
-      // usePostMutation sends payload as body.
-      // If the API expects a raw string/number as body, we send values.companyId directly (if it can be handled)
-      // or wrapped in an object if it expects JSON with a key.
-      // Based on common patterns in this project (likely .NET backend), it might expect a query param or a specific body.
-      // BUT, usually a POST body is JSON. let's send { companyId: ... } if we aren't sure, 
-      // however, the previous snippet: postRequestPreLogin(..., companyId) suggests it might be sending the ID directly or as part of a wrapper.
-      // Let's assume it sends the ID as JSON body if it's a number/string.
-      // We will send values.companyId. If it fails, we might need to wrap it.
 
-      const res = await switchCompany(values.companyId);
+
+      setIsSwitchLoading(true);
+      const res = await postRequestPreLogin('/api/UserProfile/SwitchCompany',
+        values.companyId,
+      );
 
       if (res?.isSuccess) {
         const decodedSwitch = jwtDecode(res?.response?.token);
@@ -171,6 +166,7 @@ const Login = () => {
       message.error(err?.response?.data?.message || 'Something Went Wrong');
     } finally {
       setSubmitting(false);
+      setIsSwitchLoading(false);
     }
   };
 
@@ -218,6 +214,7 @@ const Login = () => {
               >
                 {({ isSubmitting }) => (
                   <Form>
+                    <div className="grid gap-4">
                     <FormikInput
                       name="name"
                       required
@@ -226,7 +223,7 @@ const Login = () => {
                     />
                     <FormikPassword
                       name="password"
-                      label={t('auth.password')}
+                        label={t('common.password')}
                       placeholder={t('auth.password_placeholder')}
                       required
                     />
@@ -250,6 +247,7 @@ const Login = () => {
                     >
                       {t('common.login')}
                     </Button>
+                    </div>
                   </Form>
                 )}
               </Formik>

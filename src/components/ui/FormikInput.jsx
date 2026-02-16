@@ -1,14 +1,14 @@
 import { Form, Input } from 'antd';
 import { useField } from 'formik';
 
-const FormikInput = ({ name, label, required, ...props }) => {
+const FormikInput = ({ name, label, layout = 'vertical', required, ...props }) => {
   const [field, meta] = useField(name);
 
   const isError = meta.touched && meta.error;
 
   return (
     <Form.Item
-      layout='vertical'
+      layout={layout}
       label={label ? <div className='field-label'>{label}</div> : null}
       validateStatus={isError ? 'error' : ''}
       help={isError ? meta.error : null}

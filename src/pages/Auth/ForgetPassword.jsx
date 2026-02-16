@@ -95,14 +95,13 @@ const ForgetPassword = () => {
             >
               {({ isSubmitting }) => (
                 <Form>
-                  <FormikInput
-                    name="email"
-                    required
-                    label={t('auth.email_username') || "Email or Username"}
-                    placeholder="Enter email or username"
-                  />
-
-
+                  <div className="grid gap-4">
+                    <FormikInput
+                      name="email"
+                      required
+                      label={t('auth.email_username') || "Email or Username"}
+                      placeholder="Enter email or username"
+                    />
                   <Button
                     type="primary"
                     htmlType="submit"
@@ -110,9 +109,10 @@ const ForgetPassword = () => {
                     block
                     size="large"
                     className="h-12 text-base font-semibold border-none bg-primary hover:bg-primary-hover"
-                  >
+                    >
                     {t('auth.send_reset_link')}
                   </Button>
+                  </div>
                 </Form>
               )}
             </Formik>
