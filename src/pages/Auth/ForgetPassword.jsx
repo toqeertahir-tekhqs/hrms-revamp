@@ -1,3 +1,4 @@
+import ArrowLeftIcon from '@/components/icons/ArrowLeftIcon.svg?react';
 import FormikInput from '@/components/ui/FormikInput';
 import useAxiosClient from '@/configuration/useAxiosClient';
 import { Button, message } from 'antd';
@@ -8,7 +9,7 @@ import * as Yup from 'yup';
 import BottomBar from './BottomBar';
 import RightSection from './RightSection';
 
-const Login = () => {
+const ForgetPassword = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -118,9 +119,9 @@ const Login = () => {
             <div className="flex justify-start my-6">
               <div
                 onClick={() => navigate('/login')}
-                className="text-sm font-medium transition-colors cursor-pointer text-secondary hover:text-secondary-hover"
+                className="flex gap-2 items-center text-sm font-medium transition-colors cursor-pointer text-secondary hover:text-secondary-hover"
               >
-                <img src="/src/attachment/Icon.svg" alt="" />
+                <ArrowLeftIcon width={11.6} height={11.6} className='text-secondary hover:text-secondary-hover' />
                 {t('auth.back_to_login')}
               </div>
             </div>
@@ -135,4 +136,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgetPassword;

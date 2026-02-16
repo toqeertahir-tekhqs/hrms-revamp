@@ -1,3 +1,4 @@
+import ArrowLeftIcon from '@/components/icons/ArrowLeftIcon.svg?react';
 import FormikInput from '@/components/ui/FormikInput';
 import FormikPassword from '@/components/ui/FormikPassword';
 import FormikSelect from '@/components/ui/FormikSelect';
@@ -266,7 +267,7 @@ const Login = () => {
                       label={t('company.company')}
                       placeholder={t('company.company_placeholder')}
                       options={getCompany}
-                      onChange={(value) => setFieldValue('companyId', value)}
+                        required
                     />
 
                     <Button
@@ -282,12 +283,13 @@ const Login = () => {
                     </Button>
 
                     <div className="mt-4 text-center">
-                      <span
-                        onClick={() => setSelectCompany(false)}
-                        className="text-sm text-gray-500 cursor-pointer hover:text-gray-700"
-                      >
-                        {t('auth.back_to_login')}
-                      </span>
+                        <div
+                          onClick={() => setSelectCompany(false)}
+                          className="flex gap-2 items-center text-sm font-medium transition-colors cursor-pointer text-secondary hover:text-secondary-hover"
+                        >
+                          <ArrowLeftIcon width={11.6} height={11.6} className='text-secondary hover:text-secondary-hover' />
+                          {t('auth.back_to_login')}
+                        </div>
                     </div>
                   </Form>
                 )}
